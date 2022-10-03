@@ -16,7 +16,7 @@ const exec = (cmd, args=[]) => new Promise((resolve, reject) => {
 });
 
 const main = async () => {
-    await exec('bash -l ', [path.join(__dirname, './main.sh')]);
+    await exec('bash', [path.join(__dirname, './main.sh')]);
 };
 
 main().catch(err => {
