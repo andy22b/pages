@@ -1,7 +1,7 @@
 const spawn = require('child_process').spawn;
 const path = require("path");
 
-const exec = (cmd, args=["-l"]) => new Promise((resolve, reject) => {
+const exec = (cmd, args=[]) => new Promise((resolve, reject) => {
     console.log(`Started: ${cmd} ${args.join(" ")}`)
     const app = spawn(cmd, args, { stdio: 'inherit' });
     app.on('close', code => {
