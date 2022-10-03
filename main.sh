@@ -16,21 +16,7 @@ echo ::endgroup::
 # so we have to try various package manager.
 echo ::group:: Installing Sphinx
 
-echo Installing sphinx via pip
-if [ -z "$INPUT_SPHINX_VERSION" ] ; then
-    pip3 install -U sphinx
-else
-    pip3 install -U sphinx==$INPUT_SPHINX_VERSION
-fi
-
-echo Adding user bin to system path
-PATH=$HOME/.local/bin:$PATH
-if ! command -v sphinx-build &>/dev/null; then
-    echo Sphinx is not successfully installed
-    exit 1
-else
-    echo Everything goes well
-fi
+conda activate leapfrog-fault-models
 
 echo ::endgroup::
 
