@@ -16,8 +16,38 @@ echo ::endgroup::
 # so we have to try various package manager.
 echo ::group:: Installing Sphinx
 
-conda activate leapfrog-fault-models
+echo Installing sphinx via pip
+if [ -z "$INPUT_SPHINX_VERSION" ] ; then
+    pip3 install -U sphinx
+else
+    pip3 install -U sphinx==$INPUT_SPHINX_VERSION
+fi
 
+echo Adding user bin to system path
+PATH=$HOME/.local/bin:$PATH
+if ! command -v sphinx-build &>/dev/null; then
+    echo Sphinx is not successfully installed
+    exit 1
+else
+    echo Everything goes well
+fi
+
+echo ::endgroup::
+
+if [ ! -z "$INPUT_REQUIREMENTS_PATH" ] ; then
+    echo ::group:: Installing requirements
+    if [ -f "$repo_dir/$INPUT_REQUIREMENTS_PATH" ]; then
+        echo Installing python requirements
+        pip3 install -r "$repo_dir/$INPUT_REQUIREMENTS_PATH"
+    else
+        echo No requirements.txt found, skipped
+    fi
+    echo ::endgroup::
+fi
+
+echo ::group:: Creating temp directory
+tmp_dir=$(mktemp -d -t pages-XXXXXXXXXX)
+echo Temp directory \"$tmp_dir\" is created
 echo ::endgroup::
 
 if [ ! -z "$INPUT_REQUIREMENTS_PATH" ] ; then
