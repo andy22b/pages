@@ -90,6 +90,7 @@ if [ -z "$branch_exist" ]; then
     git checkout --force --orphan $INPUT_TARGET_BRANCH
 else
     echo Branch exists, checkout to it
+    git fetch
     git checkout --force $INPUT_TARGET_BRANCH
 fi
 git clean -fd
