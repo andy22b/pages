@@ -1,5 +1,5 @@
 =========================
-Sphinx to GitHub Pages V2
+Sphinx to GitHub Pages V3
 =========================
 
 .. image:: https://img.shields.io/github/stars/sphinx-notes/pages.svg?style=social&label=Star&maxAge=2592000
@@ -30,12 +30,12 @@ So your workflow file should be:
      build:
        runs-on: ubuntu-latest
        steps:
-       - uses: actions/setup-python@v2
+       - uses: actions/setup-python@v3
        - uses: actions/checkout@master
          with:
            fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
        - name: Build and Commit
-         uses: sphinx-notes/pages@v2
+         uses: sphinx-notes/pages@v3
        - name: Push changes
          uses: ad-m/github-push-action@master
          with:
